@@ -89,10 +89,10 @@ Dans cette première partie, vous allez analyser [une connexion WPA Entreprise](
 		La version actuelle est la 1.0 mais le client souhaiterais passer à la 1.2.
 		
 		*Client*
-        ![](img/VtlsClt.PNG)
+        ![](img/VtlsClt.png)
 
         *Serveur*
-        ![](img/VtlsServer.PNG)
+        ![](img/VtlsServer.png)
 
 		- Suites cryptographiques et méthodes de compression proposées par le client et acceptées par l’AP
 		![](img/protocoles_chiffrement_new.png)
@@ -103,20 +103,21 @@ Dans cette première partie, vous allez analyser [une connexion WPA Entreprise](
 		Ils sont rensignés par le champ random du client et du serveur hello.
 		
 		*Client*
-        ![](img/cltNonce.PNG)
+        ![](img/cltNonce.png)
 
         *Serveur*
-        ![](img/SrvrNonce.PNG)
+        ![](img/SrvrNonce.png)
 
 		- Session ID
 		
 		Ils sont rensignés par le champ Session ID du client et du serveur hello.
 		
-		*Client*  
-        ![](img/cltSessionId.PNG)
+		*Client*   
+
+        ![](img/cltSessionId.png)
         
         *Serveur*
-       ![](img/SrvrSessionId.PNG)
+		![](img/SrvrSessionId.png)
 		
 	- Phase de transmission de certificats
 	 	- Echanges des certificats
