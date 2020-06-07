@@ -61,10 +61,10 @@ Dans cette première partie, vous allez analyser [une connexion WPA Entreprise](
  	- Requête et réponse d’association (ou reassociation)
  	
  	*Requête*
-    ![](img/reassociation_response.png)
+    ![](img/reassociation_request.png)
     
     *Réponse*
-    ![réponse d'association](img/reassociation_auth_SO.png)	
+    ![réponse d'association](img/reassociation_response.png)	
     
 	- Négociation de la méthode d’authentification entreprise
 	
@@ -112,7 +112,7 @@ Dans cette première partie, vous allez analyser [une connexion WPA Entreprise](
 		
 		Ils sont rensignés par le champ Session ID du client et du serveur hello.
 		
-		*Client*
+		*Client*  
         ![](img/cltSessionId.PNG)
         
         *Serveur*
