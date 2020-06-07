@@ -51,31 +51,100 @@ Dans cette première partie, vous allez analyser [une connexion WPA Entreprise](
 
 - Comparer [la capture](files/auth.pcap) au processus d’authentification donné en théorie (n’oubliez pas les captures d'écran pour illustrer vos comparaisons !). En particulier, identifier les étapes suivantes :
 	- Requête et réponse d’authentification système ouvert
+	
+	*Requête*
+    ![requete d'authentification](img/authentification_open_system_request.png)
+	
+    *Réponse*
+    ![](img/authentification_open_system_response.png)
+
  	- Requête et réponse d’association (ou reassociation)
+ 	
+ 	*Requête*
+    ![](img/reassociation_response.png)
+    
+    *Réponse*
+    ![réponse d'association](img/reassociation_auth_SO.png)	
+    
 	- Négociation de la méthode d’authentification entreprise
+	
+	le serveur propose EAP-TLS au client.
+    ![](img/protocol_request_1.png)
+
+    ![](img/protocol_response_2.png)
+
+   le client suggére EAP_PEAP
+   ![](img/protocol_request_3.png)
+
+	
 	- Phase d’initiation. Arrivez-vous à voir l’identité du client ?
+	
+	Nous arrivons à voir l'dentité du client, il s'agit de ``joel.gonin``.
+	
+    ![](img/identity_response.png)
+
 	- Phase hello :
 		- Version TLS
+		
+		La version actuelle est la 1.0 mais le client souhaiterais passer à la 1.2.
+		
+		*Client*
+        ![](img/VtlsClt.PNG)
+
+        *Serveur*
+        ![](img/VtlsServer.PNG)
+
 		- Suites cryptographiques et méthodes de compression proposées par le client et acceptées par l’AP
+		![](img/protocoles_chiffrement_new.png)
+		
+		il y a pas de méthode de compression et la suite cipher choisie est la suivante : *TLS_RSA_WITH_AES_256_CBC_SHA*.
+		
 		- Nonces
+		Ils sont rensignés par le champ random du client et du serveur hello.
+		
+		*Client*
+        ![](img/cltNonce.PNG)
+
+        *Serveur*
+        ![](img/SrvrNonce.PNG)
+
 		- Session ID
+		
+		Ils sont rensignés par le champ Session ID du client et du serveur hello.
+		
+		*Client*
+        ![](img/cltSessionId.PNG)
+        
+        *Serveur*
+       ![](img/SrvrSessionId.PNG)
+		
 	- Phase de transmission de certificats
 	 	- Echanges des certificats
+        ![](img/certificate_hello_last_packet.png)
+
 		- Change cipher spec
+        ![](img/tls_change_cipher_spec.png)
+
 	- Authentification interne et transmission de la clé WPA (échange chiffré, vu comme « Application data »)
+	
+        ![](img/application_data.png)
+
+	
 	- 4-way handshake
+![](img/handshake_with_2_open.png)	
 
 ### Répondez aux questions suivantes :
  
 > **_Question :_** Quelle ou quelles méthode(s) d’authentification est/sont proposé(s) au client ?
+
 > 
-> **_Réponse :_** 
+> **_Réponse :_** le serveur propose au client la méthode d'authentification EAP-TLS 
 
 ---
 
 > **_Question:_** Quelle méthode d’authentification est finalement utilisée ?
 > 
-> **_Réponse:_** 
+> **_Réponse:_** la méthode finalement utilisée sera EAP-PEAP car le client va refuser celle proposée par le serveur et opter pour EAP-PEAP
 
 ---
 
@@ -83,11 +152,11 @@ Dans cette première partie, vous allez analyser [une connexion WPA Entreprise](
 > 
 > - a. Le serveur envoie-t-il un certificat au client ? Pourquoi oui ou non ?
 > 
-> **_Réponse:_**
+> **_Réponse:_** Oui le serveur envoie plus précisement trois certificats au client, il l'envoit pour s'authentifier auprès du client. Cela permet de se protéger des attaques du type Man In The Middle- 
 > 
 > - b. Le client envoie-t-il un certificat au serveur ? Pourquoi oui ou non ?
 > 
-> **_Réponse:_**
+> **_Réponse:_** Non le client n'envoie pas de certificat au serveur, la méthode d'authentification utilisée(EAP_PEAP) propose l'authentification du client à travers des credentials. 
 > 
 
 ---
